@@ -35,11 +35,11 @@ describe provider_class do
       @provider.class.stubs(:lvs).with('data').returns(lvs_output)
       expect(@provider.exists?).to be > 10
     end
-    it "should return 'false', lv 'dat' in vg 'data'does not exists" do
+    it "should return 'nil', lv 'dat' in vg 'data'does not exists" do
       @resource.expects(:[]).with(:name).returns('dat')
       @resource.expects(:[]).with(:volume_group).returns('data').at_least_once
       @provider.class.stubs(:lvs).with('data').returns(lvs_output)
-      expect(@provider.exists?).to be < 0
+      expect(@provider.exists?).to be_nil
     end
     it "should return 'nil', lv 'data' in vg 'myvg' does not exist" do
       @resource.expects(:[]).with(:volume_group).returns('myvg').at_least_once
