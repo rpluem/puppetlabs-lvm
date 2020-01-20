@@ -160,7 +160,7 @@ Puppet::Type.type(:logical_volume).provide :lvm do
 
     def exists?
         begin
-            lvs(@resource[:volume_group]) =~ lvs_pattern
+            lvs(@resource[:volume_group]) =~ /#{@resource[:name]}/
         rescue Puppet::ExecutionFailure
             # lvs fails if we give it an empty volume group name, as would
             # happen if we were running `puppet resource`. This should be
