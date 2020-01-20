@@ -38,7 +38,7 @@ describe provider_class do
     it "should return 'false', lv 'dat' in vg 'data' exists" do
       @resource.expects(:[]).with(:name).returns('dat')
       @resource.expects(:[]).with(:volume_group).returns('data').at_least_once
-      @provider.class.stubs(:lvs).with('dat').returns(lvs_output)
+      @provider.class.stubs(:lvs).with('data').returns(lvs_output)
       expect(@provider.exists?).to be < 0
     end
     it "should return 'nil', lv 'data' in vg 'myvg' does not exist" do
